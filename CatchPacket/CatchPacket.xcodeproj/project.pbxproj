@@ -34,6 +34,7 @@
 		7B498C0F1E5C05C30028D638 /* CatchPacketTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B498C0E1E5C05C30028D638 /* CatchPacketTests.m */; };
 		7B498C1A1E5C05C30028D638 /* CatchPacketUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B498C191E5C05C30028D638 /* CatchPacketUITests.m */; };
 		7B498C291E5C08C40028D638 /* CatchRedPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B498C281E5C08C40028D638 /* CatchRedPacketViewController.m */; };
+		7BE3140C1E76A62600B6A181 /* YGGravity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE3140B1E76A62600B6A181 /* YGGravity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		7B498C1B1E5C05C30028D638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B498C271E5C08C40028D638 /* CatchRedPacketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatchRedPacketViewController.h; sourceTree = "<group>"; };
 		7B498C281E5C08C40028D638 /* CatchRedPacketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatchRedPacketViewController.m; sourceTree = "<group>"; };
+		7BE3140A1E76A62600B6A181 /* YGGravity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGGravity.h; sourceTree = "<group>"; };
+		7BE3140B1E76A62600B6A181 /* YGGravity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGGravity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +204,8 @@
 				7B498C281E5C08C40028D638 /* CatchRedPacketViewController.m */,
 				7B4946451E5C174300AF83CB /* CatchView.h */,
 				7B4946461E5C174300AF83CB /* CatchView.m */,
+				7BE3140A1E76A62600B6A181 /* YGGravity.h */,
+				7BE3140B1E76A62600B6A181 /* YGGravity.m */,
 				7B00087E1E642E7C00DC1339 /* RedPacketView.h */,
 				7B00087F1E642E7C00DC1339 /* RedPacketView.m */,
 				7B498BFD1E5C05C30028D638 /* Main.storyboard */,
@@ -384,6 +389,7 @@
 				7B498BFC1E5C05C30028D638 /* ViewController.m in Sources */,
 				7B00086D1E642D9100DC1339 /* YLGIFImage.m in Sources */,
 				7B4946471E5C174300AF83CB /* CatchView.m in Sources */,
+				7BE3140C1E76A62600B6A181 /* YGGravity.m in Sources */,
 				7B498BF91E5C05C30028D638 /* AppDelegate.m in Sources */,
 				7B498C291E5C08C40028D638 /* CatchRedPacketViewController.m in Sources */,
 				7B498BF61E5C05C30028D638 /* main.m in Sources */,

@@ -8,9 +8,12 @@
 
 #import "CatchView.h"
 #import "RedPacketView.h"
+#import "YGGravity.h"
 
 #define KRedPacket_w 90
 #define KRedPacket_h ((90 * 515) / 607)
+
+#define SPEED 50
 
 @interface CatchView ()
 {
@@ -165,7 +168,6 @@
             NSLog(@"出去了");
             _catchView.image = [UIImage imageNamed:@"ic_circle_normal"];
             _catchView.transform = CGAffineTransformIdentity;
-            
             _catchBtn.selected = NO;
         }
         
@@ -257,8 +259,78 @@
     }
 }
 
-- (void)startAnimate {}
+- (void)startAnimate {
 
+    float scrollSpeed = (_myImageView.frame.size.width - self.frame.size.width) / 2 / SPEED;
+    float scrollSpeedH = (_myImageView.frame.size.height - self.frame.size.height) / 2 / SPEED;
+    
+    [YGGravity sharedGravity].timeInterval = 0.03;
+    
+    __weak typeof(&*self) weakSelf = self;
+    
+    [[YGGravity sharedGravity] startDeviceMotionUpdatesBlock:^(float x, float y, float z) {
+        
+        [UIView animateKeyframesWithDuration:1 delay:0 options:UIViewKeyframeAnimationOptionCalculationModeDiscrete | UIViewAnimationOptionAllowUserInteraction animations:^{
+            
+            if ((weakSelf.myImageView.frame.origin.x <= 0 && weakSelf.myImageView.frame.origin.x >= weakSelf.frame.size.width - weakSelf.myImageView.frame.size.width) || (weakSelf.myImageView.frame.origin.y >= 0 && weakSelf.myImageView.frame.origin.y >= weakSelf.frame.size.height - weakSelf.myImageView.frame.size.height)) {
+                float invertedYRotationRate = y * 1.0;
+                
+                float interpretedXOffset = weakSelf.myImageView.frame.origin.x + invertedYRotationRate * (weakSelf.myImageView.frame.size.width / [UIScreen mainScreen].bounds.size.width) * scrollSpeed + weakSelf.myImageView.frame.size.width / 2;
+                
+                float invertedYRotationRatey = x * 1.0;
+                
+                float interpretedXOffsety = weakSelf.myImageView.frame.origin.y + invertedYRotationRatey * (weakSelf.myImageView.frame.size.height / [UIScreen mainScreen].bounds.size.height) * scrollSpeedH + weakSelf.myImageView.frame.size.height / 2;
+                
+                weakSelf.myImageView.center = CGPointMake(interpretedXOffset, interpretedXOffsety);
+            }
+            
+            if (weakSelf.myImageView.frame.origin.x > 0) {
+                weakSelf.myImageView.frame = CGRectMake(0, weakSelf.myImageView.frame.origin.y, weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.size.height);
+            }
+            if (weakSelf.myImageView.frame.origin.y > 0) {
+                weakSelf.myImageView.frame = CGRectMake(weakSelf.myImageView.frame.origin.x, 0, weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.size.height);
+            }
+            
+            if (weakSelf.myImageView.frame.origin.x < weakSelf.frame.size.width - weakSelf.myImageView.frame.size.width) {
+                weakSelf.myImageView.frame = CGRectMake(weakSelf.frame.size.width - weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.origin.y, weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.size.height);
+            }
+            if (weakSelf.myImageView.frame.origin.y < weakSelf.frame.size.height - weakSelf.myImageView.frame.size.height) {
+                weakSelf.myImageView.frame = CGRectMake(weakSelf.myImageView.frame.origin.x, weakSelf.frame.size.height - weakSelf.myImageView.frame.size.height, weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.size.height);
+            }
+            //            NSLog(@"y ======%f",_myImageView.frame.origin.y);
+            if (weakSelf.myImageView.frame.origin.y < -weakSelf.frame.size.height - weakSelf.myImageView.frame.origin.y - 100) {
+                
+                weakSelf.myImageView.center = CGPointMake(weakSelf.frame.size.width / 2, weakSelf.frame.size.height / 2);
+            }
+            
+            //            NSLog(@"x=======%.2f",_myImageView.frame.origin.x);
+            //            NSLog(@"y=======%.2f",_myImageView.frame.origin.y);
+            
+        }
+                                  completion:nil];
+
+        CGFloat w2 = 320 / 3 - 80;
+        CGFloat x2 = (weakSelf.frame.size.width - w2) / 2;
+        //self.frame.size.width - 100-100;
+        CGFloat h2 = w2;
+        CGFloat y2 = (weakSelf.frame.size.height - h2) / 2 - h2 - 75;
+        
+        //        NSLog(@"x=======%.2f",_myImageView.frame.origin.x);
+        
+        CGFloat x3 = 0 - weakSelf.myImageView.frame.origin.x + x2;
+        CGFloat y3 = 0 - weakSelf.myImageView.frame.origin.y + y2;
+        CGFloat w3 = w2;
+        CGFloat h3 = y2;
+        catchRect = CGRectMake(x3, y3, w3, h3);
+        
+    }];
+
+}
+
+
+- (void)stopAnimate {
+    [[YGGravity sharedGravity] stop];
+}
 
 //随机返回某个区间范围内的值
 - (CGFloat)randomBetween:(CGFloat)smallerNumber And:(CGFloat)largerNumber {
