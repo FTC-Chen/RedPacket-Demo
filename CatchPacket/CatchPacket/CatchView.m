@@ -273,6 +273,7 @@
         [UIView animateKeyframesWithDuration:1 delay:0 options:UIViewKeyframeAnimationOptionCalculationModeDiscrete | UIViewAnimationOptionAllowUserInteraction animations:^{
             
             if ((weakSelf.myImageView.frame.origin.x <= 0 && weakSelf.myImageView.frame.origin.x >= weakSelf.frame.size.width - weakSelf.myImageView.frame.size.width) || (weakSelf.myImageView.frame.origin.y >= 0 && weakSelf.myImageView.frame.origin.y >= weakSelf.frame.size.height - weakSelf.myImageView.frame.size.height)) {
+               
                 float invertedYRotationRate = y * 1.0;
                 
                 float interpretedXOffset = weakSelf.myImageView.frame.origin.x + invertedYRotationRate * (weakSelf.myImageView.frame.size.width / [UIScreen mainScreen].bounds.size.width) * scrollSpeed + weakSelf.myImageView.frame.size.width / 2;

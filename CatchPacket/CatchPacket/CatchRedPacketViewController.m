@@ -15,13 +15,14 @@
 #import <SceneKit/SceneKit.h>
 #import "CatchView.h"
 
-@interface CatchRedPacketViewController ()
+@interface CatchRedPacketViewController ()<SCNSceneRendererDelegate, MCCatchViewDelegate>
 {
     SCNVector3 forwardDirectionVector;
     UIView *_bgview;
     SCNView *_scnView;
     CatchView *catchImgView;
 }
+
 //AVCaptureSession对象来执行输入设备和输出设备之间的数据传递
 @property (nonatomic, strong) AVCaptureSession *session;
 //提供来自设备的数据
@@ -109,7 +110,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - MCCatchViewDelegate
+- (void)catchRedPacket {
+    
+    [self actionBackBtn];
+}
+
 - (void)actionBackBtn {
+    [self.session stopRunning];
+    
+    [catchImgView.timer invalidate];
+    
+    catchImgView.timer = nil;
+    [catchImgView stopAnimate];
     
     [catchImgView.myImageView removeFromSuperview];
     [self dismissViewControllerAnimated:YES completion:nil];
