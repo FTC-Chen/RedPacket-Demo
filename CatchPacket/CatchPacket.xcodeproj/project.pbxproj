@@ -35,6 +35,7 @@
 		7B498C1A1E5C05C30028D638 /* CatchPacketUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B498C191E5C05C30028D638 /* CatchPacketUITests.m */; };
 		7B498C291E5C08C40028D638 /* CatchRedPacketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B498C281E5C08C40028D638 /* CatchRedPacketViewController.m */; };
 		7BE3140C1E76A62600B6A181 /* YGGravity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE3140B1E76A62600B6A181 /* YGGravity.m */; };
+		7BE3140E1E77DB2D00B6A181 /* Red.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7BE3140D1E77DB2D00B6A181 /* Red.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		7B498C281E5C08C40028D638 /* CatchRedPacketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatchRedPacketViewController.m; sourceTree = "<group>"; };
 		7BE3140A1E76A62600B6A181 /* YGGravity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGGravity.h; sourceTree = "<group>"; };
 		7BE3140B1E76A62600B6A181 /* YGGravity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGGravity.m; sourceTree = "<group>"; };
+		7BE3140D1E77DB2D00B6A181 /* Red.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Red.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				7B49463B1E5C137600AF83CB /* ic_arrow.png */,
 				7B49463C1E5C137600AF83CB /* ic_circle.png */,
 				7B49463D1E5C137600AF83CB /* ic_circle_normal.png */,
+				7BE3140D1E77DB2D00B6A181 /* Red.gif */,
 			);
 			path = img;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				7B49463E1E5C137600AF83CB /* bird.gif in Resources */,
 				7B498C011E5C05C30028D638 /* Assets.xcassets in Resources */,
 				7B49463F1E5C137600AF83CB /* btn_catch.png in Resources */,
+				7BE3140E1E77DB2D00B6A181 /* Red.gif in Resources */,
 				7B4946421E5C137600AF83CB /* ic_arrow.png in Resources */,
 				7B498BFF1E5C05C30028D638 /* Main.storyboard in Resources */,
 				7B4946401E5C137600AF83CB /* btn_catch_normal.png in Resources */,
