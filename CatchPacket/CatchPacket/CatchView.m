@@ -142,6 +142,7 @@
      _timer = [NSTimer scheduledTimerWithTimeInterval:.3 target:self selector:@selector(jianCe) userInfo:nil repeats:YES];
 }
 
+//监测红包是否飞入框内  飞入则让圆圈及button变色
 - (void)jianCe {
     
     for (NSInteger i = 0; i < 4; i++) {
@@ -156,8 +157,10 @@
             NSLog(@"进来了");
             
             [UIView animateWithDuration:.1 animations:^{
+                //catchvView会有一个小的放大效果
                 _catchView.transform = CGAffineTransformScale(_catchView.transform, .98, .98);
             }completion:^(BOOL finished) {
+                
                 _catchView.transform = CGAffineTransformIdentity;
             }];
             
@@ -195,6 +198,7 @@
     
 }
 
+//飞行, 改变frame;random的x值和y值;
 - (void)RedPacketFiy2:(RedPacketView *)RedPacket {
     
     CGFloat RedPacket_w = KRedPacket_w;
@@ -214,11 +218,14 @@
         [UIView animateWithDuration:3 animations:^{
             
             RedPacket.frame = CGRectMake(random_x, random_y, RedPacket.frame.size.width, RedPacket.frame.size.height);
+            
             RedPacket.transform = CGAffineTransformIdentity;
+            
             RedPacket.state_size = 0;
             
         }completion:^(BOOL finished) {
-            if (_timer) {
+            
+            if (_timer) { //如果time没结束,重新开始计算
             
                 [self RedPacketFiy2:RedPacket];
             }
@@ -229,6 +236,8 @@
         [UIView animateWithDuration:3 animations:^{
             
             RedPacket.frame = CGRectMake(random_x, random_y, RedPacket.frame.size.width, RedPacket.frame.size.height);
+            
+            //该表比例,产生远近的区别
             RedPacket.transform = CGAffineTransformScale(RedPacket.transform, Scalenum, Scalenum);
             
             if (Scalenum > 1) {
@@ -241,7 +250,7 @@
             
         }completion:^(BOOL finished) {
             
-            if (_timer) {
+            if (_timer) {//没有结束,重复执行
             
                 [self RedPacketFiy2:RedPacket];
             }
@@ -273,7 +282,7 @@
         [UIView animateKeyframesWithDuration:1 delay:0 options:UIViewKeyframeAnimationOptionCalculationModeDiscrete | UIViewAnimationOptionAllowUserInteraction animations:^{
             
             if ((weakSelf.myImageView.frame.origin.x <= 0 && weakSelf.myImageView.frame.origin.x >= weakSelf.frame.size.width - weakSelf.myImageView.frame.size.width) || (weakSelf.myImageView.frame.origin.y >= 0 && weakSelf.myImageView.frame.origin.y >= weakSelf.frame.size.height - weakSelf.myImageView.frame.size.height)) {
-               
+                
                 float invertedYRotationRate = y * 1.0;
                 
                 float interpretedXOffset = weakSelf.myImageView.frame.origin.x + invertedYRotationRate * (weakSelf.myImageView.frame.size.width / [UIScreen mainScreen].bounds.size.width) * scrollSpeed + weakSelf.myImageView.frame.size.width / 2;
@@ -286,16 +295,21 @@
             }
             
             if (weakSelf.myImageView.frame.origin.x > 0) {
+                
                 weakSelf.myImageView.frame = CGRectMake(0, weakSelf.myImageView.frame.origin.y, weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.size.height);
             }
             if (weakSelf.myImageView.frame.origin.y > 0) {
+                
                 weakSelf.myImageView.frame = CGRectMake(weakSelf.myImageView.frame.origin.x, 0, weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.size.height);
             }
             
             if (weakSelf.myImageView.frame.origin.x < weakSelf.frame.size.width - weakSelf.myImageView.frame.size.width) {
+                
                 weakSelf.myImageView.frame = CGRectMake(weakSelf.frame.size.width - weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.origin.y, weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.size.height);
             }
-            if (weakSelf.myImageView.frame.origin.y < weakSelf.frame.size.height - weakSelf.myImageView.frame.size.height) {
+            if (weakSelf.myImageView.frame.origin.y < weakSelf.frame.size.height -
+               
+                weakSelf.myImageView.frame.size.height) {
                 weakSelf.myImageView.frame = CGRectMake(weakSelf.myImageView.frame.origin.x, weakSelf.frame.size.height - weakSelf.myImageView.frame.size.height, weakSelf.myImageView.frame.size.width, weakSelf.myImageView.frame.size.height);
             }
             //            NSLog(@"y ======%f",_myImageView.frame.origin.y);
@@ -333,7 +347,7 @@
     [[YGGravity sharedGravity] stop];
 }
 
-//随机返回某个区间范围内的值
+//随机返回某个区间范围内的值  此处是为了改变比例
 - (CGFloat)randomBetween:(CGFloat)smallerNumber And:(CGFloat)largerNumber {
 
     //设置精确的位数
